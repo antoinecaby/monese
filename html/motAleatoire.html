@@ -9,123 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Contrail+One&family=Krub:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/motAleatoire.css">
 
-    <style>
-        html, body {
-            height: 96%;
-            padding: 15px;
-            margin: 0;
-        }
-
-        body {
-            background-color: #E9EDF0;
-            border: solid 2px #15323F;
-            border-radius: 10px;
-            font-family: "Krub", sans-serif;
-        }
-
-        h1 {
-            text-align: center;
-            font-family: "Contrail One", sans-serif;
-            font-size: 80px;
-            color: #15323F;
-            margin-bottom: 40px;
-        }
-
-        .word-card {
-            background-color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            border: 1px solid #ccc;
-            max-width: 600px;
-            height: 225px;
-            margin: 0 auto 2rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .word-card h2 {
-            color: #15323F;
-        }
-
-        .tag {
-            display: inline-block;
-            background-color: #ddd;
-            padding: 0.4rem 0.8rem;
-            border-radius: 8px;
-            margin-right: 0.5rem;
-            margin-top: 0.5rem;
-            font-size: 0.85rem;
-            color: #333;
-        }
-
-        #next-button {
-            display: block;
-            margin: 0 auto;
-            padding: 0.6rem 1.2rem;
-            font-size: 1rem;
-            border-radius: 8px;
-            border: none;
-            background-color: #15323F;
-            color: white;
-            cursor: pointer;
-        }
-
-        #next-button:disabled {
-            background-color: #999;
-            cursor: not-allowed;
-        }
-    </style>
 </head>
 <body>
-<h1>Monèse</h1>
-<div id="container"></div>
-<button id="next-button">Suivant</button>
+    <h1>Monèse</h1>
+    <div id="container"></div>
+    <button id="next-button">Suivant</button>
+    <script type="module" src="/js/motAleatoire.js" defer></script>
 
-<script type="module">
-    import mots from '../mots.json' with { type: 'json' };
-
-    const container = document.getElementById('container');
-    const nextButton = document.getElementById('next-button');
-
-    function getMotAleatoire() {
-        const randomIndex = Math.floor(Math.random() * mots.length);
-        return mots[randomIndex];
-    }
-
-    function afficherMot() {
-        container.innerHTML = '';
-
-        const mot = getMotAleatoire();
-        if (!mot) return;
-
-        const card = document.createElement('div');
-        card.className = 'word-card';
-
-        const title = document.createElement('h2');
-        title.textContent = mot.Mot.charAt(0).toUpperCase() + mot.Mot.slice(1);
-
-        const def = document.createElement('p');
-        def.innerHTML = `<strong>Définition :</strong> ${mot.Définition}`;
-
-        const ex = document.createElement('p');
-        ex.innerHTML = `<strong>Exemple :</strong> ${mot.Exemple}`;
-
-        const type = document.createElement('span');
-        type.className = 'tag';
-        type.textContent = mot.Type;
-
-        const diff = document.createElement('span');
-        diff.className = 'tag';
-        diff.textContent = `Difficulté : ${mot.Difficulté}`;
-
-        card.append(title, def, ex, type, diff);
-        container.appendChild(card);
-    }
-
-    nextButton.addEventListener('click', afficherMot);
-
-    afficherMot();
-</script>
 
 </body>
 </html>
