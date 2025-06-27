@@ -5,7 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monèse</title>
 </head>
-<body> 
-    <h1>Monèse</h1>    
+<body>
+<h1>Monèse</h1>
+<div id="container"></div>
+
+<script type="module">
+    import mots from './mots.json' with { type: 'json' };
+
+    const container = document.getElementById('container');
+
+    mots.forEach(({ Mot, Définition, Exemple, Type, Difficulté }) => {
+        const card = document.createElement('div');
+        card.className = 'word-card';
+
+        const title = document.createElement('h2');
+        title.textContent = Mot;
+
+        const def = document.createElement('p');
+        def.innerHTML = `<strong>Définition :</strong> ${Définition}`;
+
+        const ex = document.createElement('p');
+        ex.innerHTML = `<strong>Exemple :</strong> ${Exemple}`;
+
+        const type = document.createElement('span');
+        type.className = 'tag';
+        type.textContent = Type;
+
+        const diff = document.createElement('span');
+        diff.className = 'tag';
+        diff.textContent = `Difficulté : ${Difficulté}`;
+
+        card.append(title, def, ex, type, diff);
+        container.appendChild(card);
+    });
+</script>
 </body>
 </html>
