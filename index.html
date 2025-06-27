@@ -83,21 +83,25 @@
 <script type="module">
     import mots from './mots.json' with { type: 'json' };
 
-    let index = 0;
     const container = document.getElementById('container');
     const nextButton = document.getElementById('next-button');
+
+    function getMotAleatoire() {
+        const randomIndex = Math.floor(Math.random() * mots.length);
+        return mots[randomIndex];
+    }
 
     function afficherMot() {
         container.innerHTML = '';
 
-        const mot = mots[index];
+        const mot = getMotAleatoire();
         if (!mot) return;
 
         const card = document.createElement('div');
         card.className = 'word-card';
 
         const title = document.createElement('h2');
-        title.textContent = mot.Mot;
+        title.textContent = mot.Mot.charAt(0).toUpperCase() + mot.Mot.slice(1);
 
         const def = document.createElement('p');
         def.innerHTML = `<strong>Définition :</strong> ${mot.Définition}`;
@@ -117,17 +121,10 @@
         container.appendChild(card);
     }
 
-    nextButton.addEventListener('click', () => {
-        if (index < mots.length - 1) {
-            index++;
-            afficherMot();
-        } else {
-            nextButton.disabled = true;
-            nextButton.textContent = "Fin des mots";
-        }
-    });
+    nextButton.addEventListener('click', afficherMot);
 
     afficherMot();
 </script>
+
 </body>
 </html>
