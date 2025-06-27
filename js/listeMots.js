@@ -1,50 +1,74 @@
-document.getElementById("aleatoire-btn").addEventListener("click", function () {
+import mots from '../mots.json' with { type: 'json' };
+
+// Navigation
+const urlOrigine = window.location.pathname;
+document.getElementById("aleatoire-btn").addEventListener("click", () => {
   window.location.href = "motAleatoire.html";
 });
-
-document.getElementById("liste-btn").addEventListener("click", function () {
+document.getElementById("liste-btn").addEventListener("click", () => {
   window.location.href = "listeMots.html";
 });
 
-import mots from '../mots.json' with { type: 'json' };
-
-const listeMotsEl = document.getElementById("liste-mots");
+// DOM principal
+const liste = document.getElementById("liste-mots");
 const popup = document.getElementById("popup");
 const closeBtn = document.getElementById("close-popup");
 
+// Contenu de la pop-up
 const titre = document.getElementById("mot-titre");
-const def = document.getElementById("mot-definition");
+const definition = document.getElementById("mot-definition");
 const exemple = document.getElementById("mot-exemple");
 const type = document.getElementById("mot-type");
 const difficulte = document.getElementById("mot-difficulte");
 
-// Trie les mots par ordre alphabétique
-mots.sort((a, b) => a.Mot.localeCompare(b.Mot));
+// Utilitaires
+function slugify(texte) {
+  return texte
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "")
+      .toLowerCase();
+}
 
-// Affiche tous les mots
-mots.forEach((mot) => {
-  const li = document.createElement('li');
-  li.textContent = mot.Mot;
-  li.addEventListener('click', () => showPopup(mot));
-  listeMotsEl.appendChild(li);
-});
-
-function showPopup(mot) {
+// Actions
+function ouvrirPopup(mot) {
   titre.textContent = mot.Mot;
-  def.textContent = mot.Définition;
+  definition.textContent = mot.Définition;
   exemple.textContent = mot.Exemple;
   type.textContent = mot.Type;
   difficulte.textContent = mot.Difficulté;
   popup.classList.remove("hidden");
+
+  const newUrl = `/${slugify(mot.Mot)}.html`;
+  history.pushState({ mot: mot.Mot }, "", newUrl);
 }
 
-closeBtn.addEventListener("click", () => {
+function fermerPopup() {
   popup.classList.add("hidden");
-});
+  history.pushState(null, "", urlOrigine);
+}
 
-// Fermer la pop-up en cliquant dehors
+// Événements
+closeBtn.addEventListener("click", fermerPopup);
+
 window.addEventListener("click", (e) => {
   if (e.target === popup) {
-    popup.classList.add("hidden");
+    fermerPopup();
   }
 });
+
+window.addEventListener("popstate", (e) => {
+  if (!e.state || !e.state.mot) {
+    fermerPopup();
+  }
+});
+
+// Initialisation
+mots
+    .sort((a, b) => a.Mot.localeCompare(b.Mot))
+    .forEach(mot => {
+      const item = document.createElement("li");
+      item.textContent = mot.Mot;
+      item.addEventListener("click", () => ouvrirPopup(mot));
+      liste.appendChild(item);
+    });
