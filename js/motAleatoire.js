@@ -41,3 +41,12 @@ function afficherMot() {
 nextButton.addEventListener('click', afficherMot);
 
 afficherMot();
+
+document.getElementById("aleatoire-btn").addEventListener("click", function () {
+    window.location.href = "motAleatoire.html";
+});
+
+document.getElementById("liste-btn").addEventListener("click", function () {
+    window.location.href = "listeMots.html";
+});
+
