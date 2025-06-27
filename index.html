@@ -4,40 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monèse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Contrail+One&family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-<h1>Monèse</h1>
-<div id="container"></div>
 
-<script type="module">
-    import mots from './mots.json' with { type: 'json' };
+    <h1>Monèse</h1>
+    <div id="container"></div>
 
-    const container = document.getElementById('container');
+    <style>
+        html, body{
+            height: 96%;
+            padding: 15px;
+        }
+        body{
+            background-color: #E9EDF0;
+            border: solid 2px #15323F;
+            border-radius: 10px;
+        }
+        h1{
+            text-align: center;
+            font-family: "Contrail One", sans-serif;
+            font-weight: 400;
+            font-size: 80px;
+            color: #15323F;
+        }
+    </style>
 
-    mots.forEach(({ Mot, Définition, Exemple, Type, Difficulté }) => {
-        const card = document.createElement('div');
-        card.className = 'word-card';
+    <script type="module">
+        import mots from './mots.json' with { type: 'json' };
 
-        const title = document.createElement('h2');
-        title.textContent = Mot;
+        const container = document.getElementById('container');
 
-        const def = document.createElement('p');
-        def.innerHTML = `<strong>Définition :</strong> ${Définition}`;
+        mots.forEach(({ Mot, Définition, Exemple, Type, Difficulté }) => {
+            const card = document.createElement('div');
+            card.className = 'word-card';
 
-        const ex = document.createElement('p');
-        ex.innerHTML = `<strong>Exemple :</strong> ${Exemple}`;
+            const title = document.createElement('h2');
+            title.textContent = Mot;
 
-        const type = document.createElement('span');
-        type.className = 'tag';
-        type.textContent = Type;
+            const def = document.createElement('p');
+            def.innerHTML = `<strong>Définition :</strong> ${Définition}`;
 
-        const diff = document.createElement('span');
-        diff.className = 'tag';
-        diff.textContent = `Difficulté : ${Difficulté}`;
+            const ex = document.createElement('p');
+            ex.innerHTML = `<strong>Exemple :</strong> ${Exemple}`;
 
-        card.append(title, def, ex, type, diff);
-        container.appendChild(card);
-    });
-</script>
+            const type = document.createElement('span');
+            type.className = 'tag';
+            type.textContent = Type;
+
+            const diff = document.createElement('span');
+            diff.className = 'tag';
+            diff.textContent = `Difficulté : ${Difficulté}`;
+
+            card.append(title, def, ex, type, diff);
+            container.appendChild(card);
+        });
+    </script>
+
 </body>
 </html>
