@@ -36,7 +36,7 @@ app.get("/mot/:mot.html", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Serveur démarré sur http://localhost:${port}`);
+  console.log(`🚀 Serveur démarré sur http://localhost:3000/html/listeMots.html`);
 });
 
 app.get("/mot/aleatoire", (req, res) => {
