@@ -18,10 +18,6 @@ app.get('/api/random', (req, res) => {
   res.json(mots[index]);
 });
 
-app.get('/api/mots', (req, res) => {
-  res.json(mots);
-});
-
 function slugify(text) {
   return text
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')

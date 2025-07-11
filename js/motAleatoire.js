@@ -7,14 +7,6 @@ async function getMotAleatoire() {
     return response.json();
 }
 
-function slugify(text) {
-    return text
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]/g, '')
-        .toLowerCase();
-}
-
 async function afficherMot() {
     container.innerHTML = '';
 
