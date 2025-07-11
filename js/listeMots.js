@@ -1,4 +1,8 @@
-import mots from '../mots.json' with { type: 'json' };
+async function fetchMots() {
+  const res = await fetch('/api/mots');
+  if (!res.ok) return [];
+  return res.json();
+}
 
 // Navigation
 const urlOrigine = window.location.pathname;
@@ -64,7 +68,8 @@ window.addEventListener("popstate", (e) => {
 });
 
 // Initialisation
-mots
+fetchMots().then(allMots => {
+  allMots
     .sort((a, b) => a.Mot.localeCompare(b.Mot))
     .forEach(mot => {
       const item = document.createElement("li");
@@ -72,3 +77,5 @@ mots
       item.addEventListener("click", () => ouvrirPopup(mot));
       liste.appendChild(item);
     });
+});
+

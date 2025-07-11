@@ -1,18 +1,27 @@
-import mots from '../mots.json' with { type: 'json' };
-
 const container = document.getElementById('container');
 const nextButton = document.getElementById('next-button');
 
-function getMotAleatoire() {
-    const randomIndex = Math.floor(Math.random() * mots.length);
-    return mots[randomIndex];
+async function getMotAleatoire() {
+    const response = await fetch('/api/random');
+    if (!response.ok) return null;
+    return response.json();
 }
 
-function afficherMot() {
+function slugify(text) {
+    return text
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]/g, '')
+        .toLowerCase();
+}
+
+async function afficherMot() {
     container.innerHTML = '';
 
-    const mot = getMotAleatoire();
+    const mot = await getMotAleatoire();
     if (!mot) return;
+
+    history.pushState({}, '', `/${slugify(mot.Mot)}.html`);
 
     const card = document.createElement('div');
     card.className = 'word-card';
