@@ -5,28 +5,85 @@
   <title><%= mot.Mot %> - Monèse</title>
   <link rel="stylesheet" href="/css/listeMots.css" />
   <link rel="stylesheet" href="/css/motAleatoire.css">
+  <style>
+    @keyframes beat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(1); }
+    }
+
+    #coeur-btn {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      animation: none;
+      transition: transform 0.2s ease;
+    }
+
+    #coeur-btn.animated {
+      animation: beat 0.3s ease;
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-title">Monèse</div>
-    <div class="navbar-buttons">
-      <a href="/html/listeMots.html"><button>Liste</button></a>
-      <a href="/mot/aleatoire"><button>Aléatoire</button></a>
-    </div>
-  </nav>
+<nav class="navbar">
+  <div class="navbar-title">Monèse</div>
+  <div class="navbar-buttons">
+    <a href="/html/listeMots.html"><button>Liste</button></a>
+    <a href="/mot/aleatoire"><button>Aléatoire</button></a>
+    <a href="/html/favoris.html"><button>Favoris</button></a>
+  </div>
+</nav>
 
-  <main style="padding: 2rem;">
-    <div class="word-card">
-    <h1><%= mot.Mot %></h1>
+<main style="padding: 2rem;">
+  <div class="word-card">
+    <button id="coeur-btn">🤍</button>
+    <h1 id="mot-titre"><%= mot.Mot %></h1>
     <p><strong>Définition :</strong> <%= mot.Définition %></p>
     <p><strong>Exemple :</strong> <%= mot.Exemple %></p>
     <p><strong>Type :</strong> <%= mot.Type %></p>
     <p><strong>Difficulté :</strong> <%= mot.Difficulté %></p>
-    <form action="/mot/aleatoire" method="get" style="text-align: center; margin-top: 2rem;">
-        </div>
-  <button type="submit" id="next-button">Suivant</button>
-</form>
+  </div>
+  <form action="/mot/aleatoire" method="get" style="text-align: center; margin-top: 2rem;">
+    <button type="submit" id="next-button">Suivant</button>
+  </form>
+</main>
 
-  </main>
+<script>
+  const mot = "<%= mot.Mot %>";
+  const coeurBtn = document.getElementById("coeur-btn");
+
+  const favoris = JSON.parse(localStorage.getItem("favoris") || "[]");
+  const stats = JSON.parse(localStorage.getItem("favoris_stats") || "{}");
+
+  const isFavori = favoris.includes(mot);
+  coeurBtn.textContent = isFavori ? "❤️" : "🤍";
+
+  coeurBtn.addEventListener("click", () => {
+    const index = favoris.indexOf(mot);
+    if (index !== -1) {
+      favoris.splice(index, 1);
+      if (stats[mot] && stats[mot] > 0) {
+        stats[mot]--;
+        if (stats[mot] === 0) {
+          delete stats[mot];
+        }
+      }
+      coeurBtn.textContent = "🤍";
+    } else {
+      favoris.push(mot);
+      stats[mot] = (stats[mot] || 0) + 1;
+      coeurBtn.textContent = "❤️";
+    }
+
+    localStorage.setItem("favoris", JSON.stringify(favoris));
+    localStorage.setItem("favoris_stats", JSON.stringify(stats));
+
+    coeurBtn.classList.add("animated");
+    setTimeout(() => coeurBtn.classList.remove("animated"), 300);
+  });
+</script>
 </body>
 </html>

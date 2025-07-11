@@ -11,19 +11,20 @@
     <link rel="stylesheet" href="/css/listeMots.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-title">Monèse</div>
-        <div class="navbar-buttons">
-            <button id="liste-btn">Liste</button>
-            <button id="aleatoire-btn">Aléatoire</button>
-        </div>
-    </nav>
-    <main>
+<nav class="navbar">
+    <div class="navbar-title">Monèse</div>
+    <div class="navbar-buttons">
+        <button id="liste-btn">Liste</button>
+        <button id="aleatoire-btn">Aléatoire</button>
+        <button id="favoris-btn">Favoris</button>
+    </div>
+</nav>
+<main>
     <ul id="liste-mots" class="mot-list"></ul>
-    </main>
+</main>
 
-    <!-- Modal -->
-    <div id="popup" class="popup hidden">
+<!-- Modal -->
+<div id="popup" class="popup hidden">
     <div class="popup-content">
         <span id="close-popup" class="close-button">&times;</span>
         <h2 id="mot-titre"></h2>
@@ -32,8 +33,8 @@
         <p><strong>Type :</strong> <span id="mot-type"></span></p>
         <p><strong>Difficulté :</strong> <span id="mot-difficulte"></span></p>
     </div>
-    </div>
+</div>
 
-    <script type="module" src="/js/listeMots.js" defer></script>
+<script type="module" src="/js/listeMots.js" defer></script>
 </body>
 </html>

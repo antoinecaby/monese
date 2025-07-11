@@ -87,3 +87,44 @@ body {
   background-color: #999;
   cursor: not-allowed;
 }
+
+.word-card button {
+  float: right;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  margin-left: auto;
+  margin-bottom: 0.5rem;
+}
+
+.mot-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem;
+}
+
+.mot-list li {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: default;
+}
+
+
+@keyframes beat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+}
+
+#coeur-btn {
+  animation: none;
+  transition: transform 0.2s ease;
+}
+#coeur-btn.animated {
+  animation: beat 0.3s ease;
+}
+

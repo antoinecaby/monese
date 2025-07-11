@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Favoris - Monèse</title>
+    <link rel="stylesheet" href="/css/motAleatoire.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="navbar-title">Monèse</div>
+    <div class="navbar-buttons">
+        <button id="liste-btn">Liste</button>
+        <button id="aleatoire-btn">Aléatoire</button>
+        <button id="favoris-btn">Favoris</button>
+    </div>
+</nav>
+
+<main style="padding: 2rem;">
+    <section>
+        <h2>💖 Vos mots favoris</h2>
+        <ul id="liste-favoris" class="mot-list"></ul>
+    </section>
+
+    <section>
+        <h2>🔥 Top 10 les plus ajoutés</h2>
+        <ul id="top-favoris" class="mot-list"></ul>
+    </section>
+</main>
+
+<script type="module" src="/js/favoris.js" defer></script>
+</body>
+</html>
