@@ -16,8 +16,7 @@ function renderListe() {
             li.textContent = m.Mot;
             li.style.cursor = "pointer";
             li.addEventListener("click", () => {
-                const motSlug = m.Mot.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                window.location.href = `/mot/${motSlug}.html`;
+                window.location.href = `/mot/${encodeURIComponent(m.Mot.toLowerCase())}.html`;
             });
             liste.appendChild(li);
         });
@@ -43,14 +42,12 @@ function renderTop10() {
         li.textContent = `${mot} (${count})`;
         li.style.cursor = "pointer";
         li.addEventListener("click", () => {
-            const motSlug = mot.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            window.location.href = `/mot/${motSlug}.html`;
+            window.location.href = `/mot/${encodeURIComponent(mot.toLowerCase())}.html`;
         });
         ul.appendChild(li);
     });
 }
 
-// Navigation
 document.getElementById("liste-btn").addEventListener("click", () => {
     window.location.href = "listeMots.html";
 });
