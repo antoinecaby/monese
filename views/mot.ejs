@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title><%= mot.Mot %> - Monèse</title>
+  <link rel="stylesheet" href="/css/listeMots.css" />
+  <link rel="stylesheet" href="/css/motAleatoire.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-title">Monèse</div>
+    <div class="navbar-buttons">
+      <a href="/html/listeMots.html"><button>Liste</button></a>
+      <a href="/mot/aleatoire"><button>Aléatoire</button></a>
+    </div>
+  </nav>
+
+  <main style="padding: 2rem;">
+    <div class="word-card">
+    <h1><%= mot.Mot %></h1>
+    <p><strong>Définition :</strong> <%= mot.Définition %></p>
+    <p><strong>Exemple :</strong> <%= mot.Exemple %></p>
+    <p><strong>Type :</strong> <%= mot.Type %></p>
+    <p><strong>Difficulté :</strong> <%= mot.Difficulté %></p>
+    <form action="/mot/aleatoire" method="get" style="text-align: center; margin-top: 2rem;">
+        </div>
+  <button type="submit" id="next-button">Suivant</button>
+</form>
+
+  </main>
+</body>
+</html>

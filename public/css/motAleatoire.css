@@ -1,0 +1,89 @@
+html,
+body {
+  height: 96%;
+  padding: 15px;
+  margin: 0;
+}
+
+body {
+  background-color: #e9edf0;
+  border: solid 2px #15323f;
+  border-radius: 10px;
+  font-family: "Krub", sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #f5f5f5;
+}
+
+.navbar-title {
+  font-family: "Contrail One", cursive;
+  font-size: 2rem;
+}
+
+.navbar-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar-buttons button {
+  font-family: "Krub", sans-serif;
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background: #e0e0e0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.navbar-buttons button:hover {
+  background: #d1d1d1;
+}
+
+.word-card {
+  background-color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  max-width: 600px;
+  height: 225px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.word-card h2 {
+  color: #15323f;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+#next-button {
+  display: block;
+  margin: 0 auto;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #15323f;
+  color: white;
+  cursor: pointer;
+}
+
+#next-button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
