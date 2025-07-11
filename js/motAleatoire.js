@@ -13,6 +13,8 @@ async function afficherMot() {
     const mot = await getMotAleatoire();
     if (!mot) return;
 
+    history.pushState({}, '', `/${slugify(mot.Mot)}.html`);
+
     const card = document.createElement('div');
     card.className = 'word-card';
 
